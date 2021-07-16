@@ -19,15 +19,53 @@ class _AuthenState extends State<Authen> {
     double size = MediaQuery.of(context).size.width;
     return Scaffold(
       body: SafeArea(
-        child: ListView(
-          children: [
-            buildImage(size),
-            buildAppName(),
-            buildUser(size),
-            buildPassword(size),
-          ],
+        child: GestureDetector(
+          onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
+          behavior: HitTestBehavior.opaque,
+          child: ListView(
+            children: [
+              buildImage(size),
+              buildAppName(),
+              buildUser(size),
+              buildPassword(size),
+              buildLogin(size),
+              buildCreateAccount(),
+            ],
+          ),
         ),
       ),
+    );
+  }
+
+  Row buildCreateAccount() {
+    return Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ShowTitle(
+                    title: 'Non Account ?',
+                    textStyle: MyConstant().h3Stype()),
+                TextButton(
+                  onPressed: ()=>Navigator.pushNamed(context,MyConstant.routeCreateAccount ),
+                  child: Text('Create Account'),
+                ),
+              ],
+            );
+  }
+
+  Row buildLogin(double size) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          margin: EdgeInsets.symmetric(vertical: 16),
+          width: size * 0.6,
+          child: ElevatedButton(
+            style: MyConstant().myButtonStyle(),
+            onPressed: () {},
+            child: Text('Login'),
+          ),
+        ),
+      ],
     );
   }
 
@@ -70,19 +108,21 @@ class _AuthenState extends State<Authen> {
             obscureText: statusRedEye,
             decoration: InputDecoration(
               suffixIcon: IconButton(
-                  onPressed: () {
-                    setState(() {
-                      statusRedEye = !statusRedEye;
-                    });
-                  },
-                  icon: statusRedEye ? Icon(
-                      Icons.remove_red_eye,
-                    color: MyConstant.dark,
-                  ) : Icon(
-                    Icons.remove_red_eye_outlined,
-                    color: MyConstant.dark,
-                  ),
-                  ),
+                onPressed: () {
+                  setState(() {
+                    statusRedEye = !statusRedEye;
+                  });
+                },
+                icon: statusRedEye
+                    ? Icon(
+                        Icons.remove_red_eye,
+                        color: MyConstant.dark,
+                      )
+                    : Icon(
+                        Icons.remove_red_eye_outlined,
+                        color: MyConstant.dark,
+                      ),
+              ),
               labelStyle: MyConstant().h3Stype(),
               labelText: 'password :',
               prefixIcon: Icon(

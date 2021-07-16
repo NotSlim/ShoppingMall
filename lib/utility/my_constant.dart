@@ -7,9 +7,9 @@ class MyConstant {
   // Route
   static String routeAuthen = '/authen';
   static String routeCreateAccount = '/createAccount';
-  static String routeBuyerService = 'buyerService';
-  static String routeSaleService = 'salerService';
-  static String routeRiderService = 'riderService';
+  static String routeBuyerService = '/buyerService';
+  static String routeSaleService = '/salerService';
+  static String routeRiderService = '/riderService';
 
   // Image
   static String image1 = 'images/image1.png';
@@ -40,6 +40,12 @@ class MyConstant {
     color: dark, 
     fontWeight: FontWeight.normal,
     );
-      
+
+  ButtonStyle myButtonStyle() => ElevatedButton.styleFrom(
+              primary: MyConstant.primary,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30),
+              ),
+            );     
       
 }
