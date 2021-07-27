@@ -39,6 +39,66 @@ class _CreateAccountState extends State<CreateAccount> {
     );
   }
 
+  Row buildAddress(double size) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          margin: EdgeInsets.only(top: 16),
+          width: size * 0.6,
+          child: TextFormField(
+            maxLines: 4,
+            decoration: InputDecoration(
+              hintText: 'Address :',
+              hintStyle: MyConstant().h3Stype(),
+              prefixIcon: Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 60),
+                child: Icon(
+                  Icons.home,
+                  color: MyConstant.dark,
+                ),
+              ),
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: MyConstant.dark),
+                  borderRadius: BorderRadius.circular(30)),
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: MyConstant.light),
+                  borderRadius: BorderRadius.circular(30)),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Row buildPhone(double size) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          margin: EdgeInsets.only(top: 16),
+          width: size * 0.6,
+          child: TextFormField(
+            decoration: InputDecoration(
+              labelStyle: MyConstant().h3Stype(),
+              labelText: 'Phone :',
+              prefixIcon: Icon(
+                Icons.phone,
+                color: MyConstant.dark,
+              ),
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: MyConstant.dark),
+                  borderRadius: BorderRadius.circular(30)),
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: MyConstant.light),
+                  borderRadius: BorderRadius.circular(30)),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     double size = MediaQuery.of(context).size.width;
@@ -56,22 +116,84 @@ class _CreateAccountState extends State<CreateAccount> {
           buildRadioBuyer(size),
           buildRadioSeller(size),
           buildRadioRaider(size),
+          buildTitle('ข้อมูลเฉพาะ'),
+          buildAddress(size),
+          buildPhone(size),
+          buildUser(size),
+          buildPassword(size),
         ],
       ),
     );
   }
 
+  Row buildUser(double size) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          margin: EdgeInsets.only(top: 16),
+          width: size * 0.6,
+          child: TextFormField(
+            decoration: InputDecoration(
+              labelStyle: MyConstant().h3Stype(),
+              labelText: 'User :',
+              prefixIcon: Icon(
+                Icons.person,
+                color: MyConstant.dark,
+              ),
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: MyConstant.dark),
+                  borderRadius: BorderRadius.circular(30)),
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: MyConstant.light),
+                  borderRadius: BorderRadius.circular(30)),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Row buildPassword(double size) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          margin: EdgeInsets.only(top: 16),
+          width: size * 0.6,
+          child: TextFormField(
+            decoration: InputDecoration(
+              labelStyle: MyConstant().h3Stype(),
+              labelText: 'Password :',
+              prefixIcon: Icon(
+                Icons.lock,
+                color: MyConstant.dark,
+              ),
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: MyConstant.dark),
+                  borderRadius: BorderRadius.circular(30)),
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: MyConstant.light),
+                  borderRadius: BorderRadius.circular(30)),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
 
   Row buildRadioBuyer(double size) {
-    return Row(mainAxisAlignment: MainAxisAlignment.center ,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(width:  size*0.6,
+        Container(
+          width: size * 0.6,
           child: RadioListTile(
             value: 'Buyer',
             groupValue: typeUser,
             onChanged: (value) {
               setState(() {
-                typeUser = value as String? ;
+                typeUser = value as String?;
               });
             },
             title: ShowTitle(
@@ -85,9 +207,11 @@ class _CreateAccountState extends State<CreateAccount> {
   }
 
   Row buildRadioSeller(double size) {
-    return Row(mainAxisAlignment: MainAxisAlignment.center,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container( width: size*0.6,
+        Container(
+          width: size * 0.6,
           child: RadioListTile(
             value: 'Seller',
             groupValue: typeUser,
@@ -107,23 +231,26 @@ class _CreateAccountState extends State<CreateAccount> {
   }
 
   Row buildRadioRaider(double size) {
-    return Row(mainAxisAlignment: MainAxisAlignment.center,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(width: size*0.6,
+        Container(
+          width: size * 0.6,
           child: RadioListTile(
-              value: 'Raider',
-              groupValue: typeUser,
-              onChanged: (value) {
-                setState(() {
+            value: 'Raider',
+            groupValue: typeUser,
+            onChanged: (value) {
+              setState(
+                () {
                   typeUser = value as String?;
                 },
               );
             },
-              title: ShowTitle(
-                title: 'ผู้ส่ง (Raider)',
-                textStyle: MyConstant().h3Stype(),
-              ),
+            title: ShowTitle(
+              title: 'ผู้ส่ง (Raider)',
+              textStyle: MyConstant().h3Stype(),
             ),
+          ),
         ),
       ],
     );
