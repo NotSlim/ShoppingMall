@@ -107,21 +107,25 @@ class _CreateAccountState extends State<CreateAccount> {
         title: Text('Create New Account'),
         backgroundColor: MyConstant.primary,
       ),
-      body: ListView(
-        padding: EdgeInsets.all(16),
-        children: [
-          buildTitle('ช้อมูลทั่วไป'),
-          buildName(size),
-          buildTitle('ชนิดของ User:'),
-          buildRadioBuyer(size),
-          buildRadioSeller(size),
-          buildRadioRaider(size),
-          buildTitle('ข้อมูลเฉพาะ'),
-          buildAddress(size),
-          buildPhone(size),
-          buildUser(size),
-          buildPassword(size),
-        ],
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
+        behavior: HitTestBehavior.opaque,
+        child: ListView(
+          padding: EdgeInsets.all(16),
+          children: [
+            buildTitle('ช้อมูลทั่วไป'),
+            buildName(size),
+            buildTitle('ชนิดของ User:'),
+            buildRadioBuyer(size),
+            buildRadioSeller(size),
+            buildRadioRaider(size),
+            buildTitle('ข้อมูลพื้นฐาน'),
+            buildAddress(size),
+            buildPhone(size),
+            buildUser(size),
+            buildPassword(size),
+          ],
+        ),
       ),
     );
   }
